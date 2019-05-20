@@ -69,7 +69,6 @@
             javax.security.auth*,
             javax.security.sasl,
             javax.servlet*;resolution:=optional,
-            javax.ws.rs*;resolution:=optional,
             javax.xml.bind*;resolution:=optional,
             javax.xml.parsers,
             javax.xml.transform*,
@@ -85,7 +84,7 @@
             org.apache.commons.daemon;version="[1.0,2)";resolution:=optional,
             org.apache.commons.httpclient*,
             org.apache.commons.io*;version="[1.4,2)",
-            org.apache.commons.lang*;version="[2.6,3)",
+            org.apache.commons.lang3.*;version="[3,4)",
             org.apache.commons.logging*;version="[1.1,2)";resolution:=optional,
             org.apache.commons.math3.util;version="[3.1,4)";resolution:=optional,
             org.apache.commons.net*;version="[3.1,4)",
@@ -108,7 +107,7 @@
             org.apache.tools.ant*;resolution:=optional,
             org.apache.zookeeper*;version="[3.4,4)";resolution:=optional,
             org.apache.xml.serialize;resolution:=optional,
-            org.codehaus.jackson*;version="[1.8,2)",
+            com.fasterxml.jackson*;version="[2,3)",
             org.jboss.netty*;version="[3.6,4)";resolution:=optional,
             org.mortbay*;version="[6.1,8)";resolution:=optional,
             sun.net*;resolution:=optional,
@@ -131,6 +130,16 @@
             <groupId>${pkgGroupId}</groupId>
             <artifactId>hadoop-common</artifactId>
             <version>${pkgVersion}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.sun.jersey</groupId>
+                    <artifactId>jersey-json</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.avro</groupId>
+                    <artifactId>avro</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>${pkgGroupId}</groupId>
@@ -141,6 +150,16 @@
             <groupId>${pkgGroupId}</groupId>
             <artifactId>hadoop-mapreduce-client-app</artifactId>
             <version>${pkgVersion}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.sun.jersey</groupId>
+                    <artifactId>jersey-json</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.avro</groupId>
+                    <artifactId>avro</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>${pkgGroupId}</groupId>
@@ -151,6 +170,16 @@
             <groupId>${pkgGroupId}</groupId>
             <artifactId>hadoop-mapreduce-client-core</artifactId>
             <version>${pkgVersion}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.sun.jersey</groupId>
+                    <artifactId>jersey-json</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.avro</groupId>
+                    <artifactId>avro</artifactId>
+                </exclusion>
+            </exclusions>            
         </dependency>
         <dependency>
             <groupId>${pkgGroupId}</groupId>
@@ -161,6 +190,35 @@
             <groupId>${pkgGroupId}</groupId>
             <artifactId>hadoop-annotations</artifactId>
             <version>${pkgVersion}</version>
+        </dependency>
+        <!-- excluded artifact withou jackson < 2 -->
+        <dependency>
+            <groupId>org.apache.avro</groupId>
+            <artifactId>avro</artifactId>
+            <version>1.9.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-json</artifactId>
+            <version>1.9</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.codehaus.jackson</groupId>
+                    <artifactId>jackson-core-asl</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.codehaus.jackson</groupId>
+                    <artifactId>jackson-mapper-asl</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.codehaus.jackson</groupId>
+                    <artifactId>jackson-jaxrs</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.codehaus.jackson</groupId>
+                    <artifactId>jackson-xc</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
     </dependencies>
